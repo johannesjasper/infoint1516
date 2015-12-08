@@ -60,7 +60,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: league; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: league; Type: TABLE; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE TABLE league (
@@ -73,7 +73,7 @@ CREATE TABLE league (
 
 
 --
--- Name: team; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: team; Type: TABLE; Schema: public; Owner: -; Tablespace:
 --
 
 
@@ -85,7 +85,7 @@ CREATE TABLE team (
 
 
 --
--- Name: location; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: location; Type: TABLE; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE TABLE location (
@@ -97,7 +97,7 @@ CREATE TABLE location (
 );
 
 --
--- Name: school; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: school; Type: TABLE; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE TABLE school (
@@ -109,7 +109,7 @@ CREATE TABLE school (
 );
 
 --
--- Name: person; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: person; Type: TABLE; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE TABLE person (
@@ -129,7 +129,7 @@ CREATE TABLE person (
 );
 
 --
--- Name: award; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: award; Type: TABLE; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE TABLE award (
@@ -144,7 +144,7 @@ CREATE TABLE award (
 
 
 --
--- Name: team_league; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: team_league; Type: TABLE; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE TABLE team_league (
@@ -157,7 +157,7 @@ CREATE TABLE team_league (
 
 
 --
--- Name: coaches; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: coaches; Type: TABLE; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE TABLE coaches (
@@ -172,7 +172,7 @@ CREATE TABLE coaches (
 
 
 --
--- Name: match; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: match; Type: TABLE; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE TABLE match (
@@ -193,7 +193,7 @@ CREATE TABLE match (
 
 
 --
--- Name: person_school; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: person_school; Type: TABLE; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE TABLE person_school (
@@ -206,7 +206,7 @@ CREATE TABLE person_school (
 
 
 --
--- Name: plays_at; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: plays_at; Type: TABLE; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE TABLE plays_at (
@@ -302,4 +302,3 @@ GRANT ALL ON SCHEMA target TO PUBLIC;
 --
 -- PostgreSQL database dump complete
 --
-
