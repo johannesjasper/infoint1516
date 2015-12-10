@@ -5,6 +5,7 @@ if [ $# -lt 1 ]; then
 fi
 DB=$1
 
+psql $DB < drop_schemas.sql
 psql $DB < create_source_schemas.sql
 psql $DB < create_integrated_schema.sql
 ./create_targets.sh $DB
