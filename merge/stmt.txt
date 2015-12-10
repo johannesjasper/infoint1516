@@ -1,0 +1,34 @@
+
+INSERT INTO target.location(location_id, city, state, country)
+	SELECT location_id+INCREMENT,city, state, country FROM TARGET_SCHEMA.location;
+
+INSERT INTO target.team(team_id,name)
+	SELECT team_id+INCREMENT,name FROM TARGET_SCHEMA.team;
+
+INSERT INTO target.league(league_id,year,name,sport)
+	SELECT league_id+INCREMENT,year, name, sport FROM TARGET_SCHEMA.league;
+
+INSERT INTO target.person(person_id,first_name,last_name,nick_name,birth_date,birth_location,death_date,death_location,weight,height)
+	SELECT person_id+INCREMENT,first_name,last_name,nick_name,birth_date,birth_location+INCREMENT,death_date,death_location+INCREMENT,weight,height from TARGET_SCHEMA.person;
+
+INSERT INTO target.school(school_id, name, location_id)
+	SELECT school_id+INCREMENT,name, location_id+INCREMENT FROM TARGET_SCHEMA.school;
+
+INSERT INTO target.person_school(person_id,school_id)
+	SELECT person_id+INCREMENT,school_id+INCREMENT FROM TARGET_SCHEMA.person_school;
+
+INSERT INTO target.team_league(team_id,league_id)
+	SELECT team_id+INCREMENT,league_id+INCREMENT FROM TARGET_SCHEMA.team_league;
+
+INSERT INTO target.coaches(person_id, team_id, league_id)
+	SELECT person_id+INCREMENT, team_id, league_id FROM TARGET_SCHEMA.coaches;
+
+INSERT INTO target.award(award_id, person_id, name, league_id)
+	SELECT award_id+INCREMENT,person_id+INCREMENT, name, league_id+INCREMENT FROM TARGET_SCHEMA.award;
+
+INSERT INTO target.match(match_id,league_id, team1, team2, date, points1, points2)
+	SELECT match_id+INCREMENT,league_id+INCREMENT, team1+INCREMENT, team2+INCREMENT, date, points1, points2 FROM TARGET_SCHEMA.match;
+
+INSERT INTO target.plays_at(person_id, team_id, league_id)
+	SELECT person_id+INCREMENT, team_id+INCREMENT, league_id+INCREMENT FROM TARGET_SCHEMA.plays_at;
+

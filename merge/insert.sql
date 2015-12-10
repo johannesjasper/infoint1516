@@ -89,10 +89,10 @@ FROM
 		death_date,
 		death_location,
 		(SELECT location_id
-		FROM target.location loc
-		WHERE loc.city IS NOT DISTINCT FROM location_death.city
-			AND loc.state IS NOT DISTINCT FROM location_death.state
-			AND loc.country IS NOT DISTINCT FROM location_death.country)
+			FROM target.location loc
+			WHERE loc.city IS NOT DISTINCT FROM location_death.city
+				AND loc.state IS NOT DISTINCT FROM location_death.state
+				AND loc.country IS NOT DISTINCT FROM location_death.country)
 		"target_death_location_id",
 		weight,
 		height
