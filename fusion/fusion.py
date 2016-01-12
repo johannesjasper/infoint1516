@@ -12,7 +12,10 @@ def main(db, db_user):
         location_mappings = location.merge_locations(cur)
         change_locations_school(location_mappings, cur)
 
+
         # school_mappings = school.merge_schools(cur, location_mappings)
+
+        league_mappings = league.merge(cur)
 
         conn.commit()
 
