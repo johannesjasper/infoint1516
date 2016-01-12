@@ -4,6 +4,7 @@ import location
 import league
 import psycopg2
 import sys
+from utils import update_ids, delete_duplicates
 
 
 def main(db, db_user):
@@ -11,8 +12,11 @@ def main(db, db_user):
     cursor = conn.cursor()
     with cursor as cur:
         location_mappings = location.merge_locations(cur)
-        change_locations_school(location_mappings, cur)
 
+        update_ids(location_mappings, cur, "school", "location_id")
+        update_ids(location_mappings, cur, "person", "birth_location")
+        update_ids(location_mappings, cur, "person", "death_location")
+        delete_duplicates(location_mappings, cur, "location", "location_id")
 
         # school_mappings = school.merge_schools(cur, location_mappings)
 
@@ -21,12 +25,7 @@ def main(db, db_user):
         conn.commit()
 
 
-def change_locations_school(location_mappings, cursor):
-    query_template = "UPDATE target_merged.school set location_id={0} WHERE location_id={1}"
-    for duplicate_id in location_mappings:
-        original_id = location_mappings[duplicate_id]
-        query = query_template.format(original_id, duplicate_id)
-        #cursor.execute(query)
+
 
 
 if __name__ == '__main__':
