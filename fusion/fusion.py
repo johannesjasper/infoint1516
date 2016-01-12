@@ -4,6 +4,7 @@ import location
 import team
 import league
 import match
+import award
 import psycopg2
 import sys
 from utils import update_ids, delete_duplicates
@@ -37,6 +38,9 @@ def main(db, db_user):
 
         match_mappings = match.merge(cur)
         delete_duplicates(match_mappings, cur, "match", "match_id")
+
+        award_mappings = award.merge(cur)
+        delete_duplicates(award_mappings, cur, "award", "award_id")
 
 
 
