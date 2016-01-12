@@ -25,3 +25,5 @@ for SCHEMA in target_baseballarchiv target_basketball201112 target_bundesliga ta
 done
 
 ./create_merged_schema.sh $DB
+
+psql $DB < fusion/prepare_db.sql

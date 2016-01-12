@@ -2,10 +2,7 @@ from utils import find_duplicates
 
 def merge(cursor):
     leagues = _get_leagues(cursor)
-
     duplicate_map, duplicates_found = find_duplicates(leagues, _compare, "league_id")
-
-    print("{0} League duplicates found".format(duplicates_found))
 
     return duplicate_map
 

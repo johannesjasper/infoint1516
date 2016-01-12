@@ -19,7 +19,6 @@ def main(db, db_user):
         delete_duplicates(team_mappings, cur, "team", "team_id")
 
         location_mappings = location.merge_locations(cur)
-
         update_ids(location_mappings, cur, "school", "location_id")
         update_ids(location_mappings, cur, "person", "birth_location")
         update_ids(location_mappings, cur, "person", "death_location")
@@ -32,6 +31,12 @@ def main(db, db_user):
         # school_mappings = school.merge_schools(cur, location_mappings)
 
         league_mappings = league.merge(cur)
+        update_ids(league_mappings, cur, "match", "league_id")
+        update_ids(league_mappings, cur, "team_league", "league_id")
+        update_ids(league_mappings, cur, "plays_at", "league_id")
+        update_ids(league_mappings, cur, "coaches", "league_id")
+        update_ids(league_mappings, cur, "award", "league_id")
+        delete_duplicates(league_mappings, cur, "league", "league_id")
 
 
 
