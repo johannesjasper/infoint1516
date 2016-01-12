@@ -10,6 +10,8 @@ def main():
     with cursor as cur:
         location_mappings = location.merge_locations(cur)
 
+        league_mappings = league.merge(cur)
+
 
         #school_mappings = school.merge_schools(cur, location_mappings)
 
