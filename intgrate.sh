@@ -23,3 +23,5 @@ for SCHEMA in target_baseballarchiv target_basketball201112 target_bundesliga ta
 	sed -e "s/TARGET_SCHEMA/$SCHEMA/g" merge/stmt.txt | sed -e "s/INCREMENT/$padding/g" | psql  -d $DB
 	((padding=$padding+100000))
 done
+
+./create_merged_schema.sh $DB
