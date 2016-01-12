@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 import location
+import league
 import psycopg2
 
 

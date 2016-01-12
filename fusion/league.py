@@ -1,24 +1,11 @@
+from utils import find_duplicates
 
 def merge(cursor):
     leagues = _get_leagues(cursor)
 
-    duplicate_map = {}
-    duplicates_found = 0
-
-    for i in range(len(leagues)):
-        a = leagues[i]
-        for j in range(i+1, len(leagues)):
-            b = leagues[j]
-
-            if _compare(a, b):
-                duplicates_found += 1
-                if b["league_id"] in duplicate_map:
-                    duplicate_map[b["league_id"]].append(a["league_id"])
-                else:
-                    duplicate_map[b["league_id"]] = [a["league_id"]]
+    duplicate_map, duplicates_found = find_duplicates(leagues, _compare, "league_id")
 
     print("{0} League duplicates found".format(duplicates_found))
-    print duplicate_map
 
     return duplicate_map
 
