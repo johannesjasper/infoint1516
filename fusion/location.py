@@ -1,8 +1,8 @@
-import country_codes
+import resources
 from utils import find_duplicates
 
 def merge_locations(cursor):
-    locations = _get_locations(cursor)[:1000]
+    locations = _get_locations(cursor)
     clean_locations = _clean(locations)
 
     duplicate_map = {}
@@ -46,7 +46,7 @@ def _clean(locations):
             loc["state"].strip()
 
         if loc["country"]:
-            if loc["country"].strip() in country_codes.COUNTRY_CODES:
-                loc["country"] = country_codes.COUNTRY_CODES[loc["country"].strip()]
+            if loc["country"].strip() in resources.COUNTRY_CODES:
+                loc["country"] = resources.COUNTRY_CODES[loc["country"].strip()]
             loc["country"].strip()
     return locations
