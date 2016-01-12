@@ -2,7 +2,7 @@ import country_codes
 
 
 def merge_locations(cursor):
-    locations = _get_locations(cursor)
+    locations = _get_locations(cursor)[:1000]
     clean_locations = _clean(locations)
 
     duplicate_map = {}
@@ -17,20 +17,10 @@ def merge_locations(cursor):
             if _compare(a, b):
                 duplicates_found += 1
                 # map location_id of b to location_id of a
-                if b["location_id"] in duplicate_map:
-                    duplicate_map[b["location_id"]].append(a["location_id"])
-                else:
-                    duplicate_map[b["location_id"]] = [a["location_id"]]
+                if b["location_id"] not in duplicate_map:
+                    duplicate_map[b["location_id"]] = a["location_id"]
 
     print("{0} Location duplicates found".format(duplicates_found))
-    print duplicate_map
-
-    # TODO: insert into db
-
-    changed = True
-
-
-
 
     return duplicate_map
 
@@ -45,7 +35,7 @@ def _compare(a, b):
 
 
 def _get_locations(cursor):
-    query = "SELECT location_id, city, state, country FROM target.location ORDER BY city"
+    query = "SELECT location_id, city, state, country FROM target_merged.location ORDER BY city"
     cursor.execute(query)
     result = cursor.fetchall()
 
