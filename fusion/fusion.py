@@ -2,6 +2,7 @@
 
 import location
 import league
+import match
 import psycopg2
 import sys
 from utils import update_ids, delete_duplicates
@@ -26,6 +27,8 @@ def main(db, db_user):
         update_ids(league_mappings, cur, "coaches", "league_id")
         update_ids(league_mappings, cur, "award", "league_id")
         delete_duplicates(league_mappings, cur, "league", "league_id")
+
+        match_mappings = match.merge(cur)
 
         conn.commit()
 
