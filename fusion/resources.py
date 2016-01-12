@@ -62,3 +62,32 @@ COUNTRY_CODES = {
     "Venezuela": "VEN",
     "Viet Nam": "VNM"
 }
+
+TEAM_CODES = {
+    "LAC": "Los Angeles Clippers",
+    "DEN": "Denver Nuggets",
+    "WAS": "Washington Wizards",
+    "NYK": "New York Knickerbockers",
+    "SAC": "Sacramento Kings",
+    "DAL": "Dallas Mavericks",
+    "BOS": "Boston Celtics",
+    "CLE": "Cleveland Cavaliers",
+    "HOU": "Houston Rockets",
+    "PHX": "Pheonix Suns",
+    "ORL": "Orlando Magic",
+    "PHI": "Philadelphia 76ers",
+    "MIA": "Miami Heat",
+    "NOH": "New Orleans Hurricanes",
+    "CHI": "Chicago Bulls",
+    "UTA": "Utah Jazz",
+    "DET": "Detroit Pistons",
+    "IND": "Indiana Pacers",
+    "CHA": "Charlotte Hornets",
+    "NJN": "New Jersey Nets",
+    "LAL": "Los Angeles Lakers",
+    "MIN": "Minnesota Timberwolves",
+    "MIL": "Milwaukee Bucks",
+    "MEM": "Memphis Sounds",
+    "ATL": "Atlanta Hawks",
+    "POR": "Portland Trailblazers",
+    "TOR": "Toronto Raptors"}
