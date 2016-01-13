@@ -8,7 +8,7 @@ import match
 import award
 import psycopg2
 import sys
-from utils import update_ids, delete_duplicates
+from utils import update_ids, update_ids_ignore, delete_duplicates
 
 
 def main(db, db_user):
@@ -16,9 +16,12 @@ def main(db, db_user):
     cursor = conn.cursor()
     with cursor as cur:
         team_mappings = team.merge_teams(cur)
-        update_ids(team_mappings, conn, "team_league", "team_id")
         update_ids(team_mappings, conn, "match", "team1")
         update_ids(team_mappings, conn, "match", "team2")
+        update_ids(team_mappings, conn, "team_league", "team_id")
+        update_ids(team_mappings, conn, "coaches", "team_id")
+        update_ids(team_mappings, conn, "plays_at", "team_id")
+        delete_duplicates(team_mappings, conn, "team_league", "team_id")
         delete_duplicates(team_mappings, conn, "team", "team_id")
 
         location_mappings = location.merge_locations(cur)
