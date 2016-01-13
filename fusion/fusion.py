@@ -8,7 +8,7 @@ import match
 import award
 import psycopg2
 import sys
-from utils import update_ids, update_ids_ignore, delete_duplicates
+from utils import update_ids, delete_duplicates
 
 
 def main(db, db_user):
@@ -21,6 +21,10 @@ def main(db, db_user):
         update_ids(team_mappings, conn, "team_league", "team_id")
         update_ids(team_mappings, conn, "coaches", "team_id")
         update_ids(team_mappings, conn, "plays_at", "team_id")
+        delete_duplicates(team_mappings, conn, "match", "team1")
+        delete_duplicates(team_mappings, conn, "match", "team2")
+        delete_duplicates(team_mappings, conn, "coaches", "team_id")
+        delete_duplicates(team_mappings, conn, "plays_at", "team_id")
         delete_duplicates(team_mappings, conn, "team_league", "team_id")
         delete_duplicates(team_mappings, conn, "team", "team_id")
 
@@ -47,9 +51,6 @@ def main(db, db_user):
 
         award_mappings = award.merge(cur)
         delete_duplicates(award_mappings, cur, "award", "award_id")
-
-
-
 
         conn.commit()
 

@@ -14,11 +14,13 @@ def merge_teams(cursor):
 def _compare(a, b):
     if a["name"] and b["name"]:
         identical = (a["name"].lower()==b["name"].lower())
-        fc = (a["name"].lower() + "fc" == b["name"].lower()) \
+        fc = (a["name"].lower() + " fc" == b["name"].lower()) \
             or (a["name"].lower() == b["name"].lower() + " fc")
-        ac = (a["name"].lower() + "ac" == b["name"].lower()) \
+        ac = (a["name"].lower() + " ac" == b["name"].lower()) \
             or (a["name"].lower() == b["name"].lower() + " ac")
-        return identical or fc or ac
+        part_of = (a["name"].lower().startswith(b["name"].lower()) \
+                   or b["name"].lower().startswith(a["name"].lower()))
+        return identical or fc or ac or part_of
     return False
 
 
