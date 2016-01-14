@@ -5,3 +5,4 @@ fi
 DB=$1
 
 pg_dump --schema='target' $DB | sed "s/target/target_merged/g" | psql  -d $DB
+psql $DB < fusion/prepare_db.sql

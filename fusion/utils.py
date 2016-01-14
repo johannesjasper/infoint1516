@@ -16,7 +16,7 @@ def find_duplicates(list, compare, id_attribute):
                 else:
                     duplicate_map[b[id_attribute]] = [a[id_attribute]]
 
-    print("{0} duplicates found".format(duplicates_found))
+    print("{0} duplicates found for {1}".format(duplicates_found, id_attribute))
     print duplicate_map
 
     return duplicate_map, duplicates_found
