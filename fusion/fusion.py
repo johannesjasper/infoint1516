@@ -6,6 +6,7 @@ import school
 import league
 import match
 import award
+import person
 import psycopg2
 import sys
 from utils import update_ids, delete_duplicates
@@ -50,7 +51,11 @@ def main(db, db_user):
         delete_duplicates(match_mappings, conn, "match", "match_id")
 
         award_mappings = award.merge(cur)
-        delete_duplicates(award_mappings, cur, "award", "award_id")
+        delete_duplicates(award_mappings, conn, "award", "award_id")
+
+        person_mappings = person.merge(cur)
+        print person_mappings
+        delete_duplicates(person_mappings, conn, "person", "person_id")
 
         conn.commit()
 
