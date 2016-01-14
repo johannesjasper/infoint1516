@@ -24,17 +24,34 @@ def find_duplicates(list, compare, id_attribute):
 
 def update_ids(mappings, conn, table, update_field):
     cursor = conn.cursor()
-    query_template = "UPDATE target_merged.{0} set {1}={2} WHERE {1}={3}"
+    query_template = "UPDATE target_merged.{0} SET {1}={2} WHERE {1}={3}"
     for duplicate_id in mappings:
         original_id = mappings[duplicate_id][0]
         query = query_template.format(table, update_field, original_id, duplicate_id)
         try:
             cursor.execute(query)
+            conn.commit()
         except psycopg2.IntegrityError as e:
             conn.rollback()
             print e
             print query
 
+
+def update_rows(mappings, conn, table, fields):
+    cursor = conn.cursor()
+    query_template = "UPDATE target_merged.{0} SET {1} WHERE {2}={3}"
+    for duplicate_id in mappings:
+        mapping = mappings[duplicate_id]
+        set_statement = ", ".join([field + "='" + str(value).replace("'", "") + "'" for field, value in zip(fields[1:], mapping[1:]) if value is not None and len(str(value)) > 0])
+        if len(set_statement) > 0:
+            query = query_template.format(table, set_statement, fields[0], duplicate_id)
+            try:
+                cursor.execute(query)
+                conn.commit()
+            except psycopg2.IntegrityError as e:
+                conn.rollback()
+                print e
+                print query
 
 
 def delete_duplicates(mappings, conn, table, field):
@@ -43,4 +60,5 @@ def delete_duplicates(mappings, conn, table, field):
     for duplicate_id in mappings:
         delete = delete_template.format(table, field, duplicate_id)
         cursor.execute(delete)
+        conn.commit()
 

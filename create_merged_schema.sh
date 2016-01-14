@@ -4,5 +4,6 @@ if [ $# -lt 1 ]; then
 fi
 DB=$1
 
+psql $DB -c "DROP SCHEMA target_merged CASCADE"
 pg_dump --schema='target' $DB | sed "s/target/target_merged/g" | psql  -d $DB
 psql $DB < fusion/prepare_db.sql

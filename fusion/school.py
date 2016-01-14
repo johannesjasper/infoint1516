@@ -1,4 +1,5 @@
 from utils import find_duplicates
+from Levenshtein import distance
 
 def merge_schools(cursor):
     schools = _get_schools(cursor)
@@ -18,6 +19,8 @@ def _compare(a, b):
     if a["name"] and b["name"]:
         if a["location_id"] == b["location_id"]:
             if a["name"].startswith(b["name"]) or b["name"].startswith(a["name"]):
+                return True
+            if distance(a["name"], b["name"]) < 3:
                 return True
 
     return False

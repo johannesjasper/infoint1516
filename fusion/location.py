@@ -1,16 +1,20 @@
 import resources
-from utils import find_duplicates
+from utils import find_duplicates, update_rows
 
 def merge_locations(cursor):
     locations = _get_locations(cursor)
     clean_locations = _clean(locations)
+
+    update_map = {}
+    for row in clean_locations:
+        update_map[row["location_id"]] = (row["location_id"], row["city"], row["state"], row["country"])
 
     duplicate_map = {}
     duplicates_found = 0
 
     duplicate_map, duplicates_found = find_duplicates(clean_locations, _compare, "location_id")
 
-    return duplicate_map
+    return duplicate_map, update_map
 
 
 def _compare(a, b):

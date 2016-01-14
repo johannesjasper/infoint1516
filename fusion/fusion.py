@@ -9,7 +9,7 @@ import award
 import person
 import psycopg2
 import sys
-from utils import update_ids, delete_duplicates
+from utils import update_ids, update_rows, delete_duplicates
 
 
 def main(db, db_user):
@@ -29,11 +29,12 @@ def main(db, db_user):
         delete_duplicates(team_mappings, conn, "team_league", "team_id")
         delete_duplicates(team_mappings, conn, "team", "team_id")
 
-        location_mappings = location.merge_locations(cur)
+        location_mappings, location_updates = location.merge_locations(cur)
         update_ids(location_mappings, conn, "school", "location_id")
         update_ids(location_mappings, conn, "person", "birth_location")
         update_ids(location_mappings, conn, "person", "death_location")
         delete_duplicates(location_mappings, conn, "location", "location_id")
+        update_rows(location_updates, conn, "location", ["location_id", "city", "state", "country"])
 
         school_mappings = school.merge_schools(cur)
         update_ids(school_mappings, conn, "person_school", "school_id")
@@ -53,13 +54,13 @@ def main(db, db_user):
         award_mappings = award.merge(cur)
         delete_duplicates(award_mappings, conn, "award", "award_id")
 
-        person_mappings = person.merge(cur)
+        person_mappings, person_updates = person.merge(cur)
         print person_mappings
         delete_duplicates(person_mappings, conn, "person", "person_id")
 
+        update_rows(person_updates, conn, "person", ["person_id", "first_name", "last_name", "nick_name", "birth_date", "birth_location", "death_date", "death_location", "weight", "height"])
+
         conn.commit()
-
-
 
 
 

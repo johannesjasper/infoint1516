@@ -31,6 +31,9 @@ def merge(cursor, window_size = 50):
     duplicates_found = []
     duplicates_map = {}
 
+    return_map = {}
+    update_map = {}
+
     for window_start in range(0, len(persons) - window_size):
         if window_start == 0:
             for i in range(window_start, window_start + window_size - 1):
@@ -64,6 +67,12 @@ def merge(cursor, window_size = 50):
         print ""
 
         persons[master_idx] = update
+
+        return_map[master[0]] = [ duplicate[0] ]
+        update_map[update[0]] = update
+
+    return return_map, update_map
+
 
 
 
