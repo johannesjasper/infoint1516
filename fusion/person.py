@@ -1,7 +1,6 @@
-from enum import IntEnum
 import psycopg2
 
-class Attr(IntEnum):
+class Attr:
     person_id = 0
     first_name = 1
     last_name = 2
